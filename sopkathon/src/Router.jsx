@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Main from './pages/Main';
-import ResultPage from './components/ResultWish/ResultWish';
+import ResultPage from './pages/ResultWish';
 import QuestionCard from './pages/QuestionCard';
 import RecmmendWish from './pages/RecommendWish';
 
