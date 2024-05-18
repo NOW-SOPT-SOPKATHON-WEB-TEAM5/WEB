@@ -20,6 +20,7 @@ export default QuestionCard;
 const QuestionCardWrapper = styled.div`
   height: 100dvh;
   padding: 5.7rem 0rem 2rem 0rem;
+  background-color: ${({ theme }) => theme.colors.blue07};
 `;
 
 const ProgressLayout = styled.div`

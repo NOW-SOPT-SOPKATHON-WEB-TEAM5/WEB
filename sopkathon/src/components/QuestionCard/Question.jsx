@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
@@ -8,50 +8,61 @@ import { postWish } from '../../apis/postWish';
 import { useGetRandomId } from '../../hooks/useGetRandomId';
 
 const Question = ({ setProgress }) => {
-  const cards = {
-    data: [
-      { id: 1, question: '즉흥적인 일탈 해본 적 있나요?1' },
-      { id: 2, question: '즉흥적인 일탈 해본 적 있나요?2' },
-      { id: 3, question: '즉흥적인 일탈 해본 적 있나요?3' },
-      { id: 4, question: '즉흥적인 일탈 해본 적 있나요?4' },
-      { id: 5, question: '즉흥적인 일탈 해본 적 있나요?5' },
-    ],
-  };
-
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [question, setQuestion] = useState('');
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState('');
   const sliderRef = useRef(null);
-  const { usedIds, setUsedIds, cardId } = useGetRandomId();
+  const { setUsedIds, randomNumber } = useGetRandomId();
+
+  useEffect(() => {
+    const fetchQuestions = async () => {
+      try {
+        const response = await getQuestion();
+        console.log(response.data.data);
+        if (Array.isArray(response.data.data)) {
+          setQuestions(response.data.data); // 데이터를 배열로 감싸지 않음
+        } else {
+          console.error('Fetched data is not an array');
+        }
+      } catch (error) {
+        console.error('Failed to fetch questions:', error);
+      }
+    };
+
+    fetchQuestions();
+  }, [randomNumber]);
+
+  useEffect(() => {
+    if (questions.length > 0) {
+      const question = questions[currentIndex];
+      if (question) {
+        setCurrentQuestion(question.content);
+      } else {
+        setCurrentQuestion('');
+      }
+    }
+  }, [currentIndex, questions]);
 
   const handleApprove = async () => {
-    if (!cardId) {
-      console.error('No more questions available');
+    if (currentIndex === null || questions.length === 0) {
       return;
     }
+    const questionId = questions[currentIndex].question_id;
     try {
-      const question = getQuestion(cardId);
-      postWish(cardId, 1);
-      setQuestion(question.data);
-      setUsedIds([...usedIds, cardId]);
-      const nextIndex = currentIndex + 1;
-      if (nextIndex <= cards.data.length) {
-        sliderRef.current.slickGoTo(nextIndex);
-        setProgress((prev) => prev + 1);
-      }
+      await postWish(questionId, 1);
+      setUsedIds((prev) => [...prev, questionId]);
+      setProgress((prev) => prev + 1);
+      handleNextCard(); // 선택 후 다음 카드로 이동
     } catch (error) {
-      console.error();
+      console.error('Error approving question:', error);
     }
   };
 
-  const handleNextCard = async () => {
-    try {
-      const nextIndex = currentIndex + 1;
-      if (nextIndex < cards.data.length) {
-        setCurrentIndex(nextIndex);
-        sliderRef.current.slickGoTo(nextIndex);
-      }
-    } catch (error) {
-      console.error();
+  const handleNextCard = () => {
+    const nextIndex = currentIndex + 1;
+    if (nextIndex < questions.length) {
+      setCurrentIndex(nextIndex);
+      sliderRef.current.slickGoTo(nextIndex);
     }
   };
 
@@ -68,15 +79,17 @@ const Question = ({ setProgress }) => {
   return (
     <CardWrapper>
       <SliderWrapper ref={sliderRef} {...settings}>
-        {cards.data.map((card, index) => {
-          return (
-            <Slide key={index} $isActive={index === currentIndex}>
-              <img src={card.src} />
-            </Slide>
-          );
-        })}
+        {questions &&
+          questions.map(
+            (question, index) =>
+              question.question_id !== 1000 && (
+                <Slide key={index} $isActive={index === currentIndex}>
+                  <img src={question.image} />
+                </Slide>
+              ),
+          )}
       </SliderWrapper>
-      <QuestionTxt>{question}</QuestionTxt>
+      <QuestionTxt>{currentQuestion}</QuestionTxt>
       <ButtonWrapper>
         <SelectBtn onClick={handleApprove}>선택</SelectBtn>
         <NextBtn onClick={handleNextCard}>넘기기</NextBtn>
@@ -98,12 +111,10 @@ const CardWrapper = styled.section`
 const SliderWrapper = styled(Slider)`
   width: 100%;
   .slick-slide > div {
-    padding: 0 1rem;
+    padding: 0 1.8rem;
   }
   .slick-track {
-    height: 36rem;
-  }
-  .slick-list {
+    height: 38rem;
   }
 `;
 
@@ -112,23 +123,31 @@ const Slide = styled.div`
   height: ${({ $isActive }) => ($isActive ? '36rem' : '32rem')};
   padding: 0.5rem;
   border-radius: 0.8rem;
-  background-color: ${({ theme }) => theme.colors.gray400};
+
   transition:
     width 0.5s,
     height 0.5s,
     opacity 0.5s;
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.5)};
   h3 {
-    height: 20rem;
     border-radius: 0.8rem;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+  img {
+    width: 230px;
+    height: 363px;
+  }
 `;
 
 const QuestionTxt = styled.span`
   padding: 2.6rem 8rem 2.5rem 8.1rem;
+  width: 100%;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   ${({ theme }) => theme.fonts.Heading3};
 `;
 

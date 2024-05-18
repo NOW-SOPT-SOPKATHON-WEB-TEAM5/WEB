@@ -1,15 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-export const useGetRandomId = (cards) => {
+export const useGetRandomId = () => {
+  const numbers = [1, 2, 3, 4];
   const [usedIds, setUsedIds] = useState([]);
+  const [randomNumber, setRandomNumber] = useState(null);
 
-  const unusedCards = cards.data.filter((card) => !usedIds.includes(card.id));
-  if (unusedCards.length === 0) return null;
-  const randomCard = unusedCards[Math.floor(Math.random() * unusedCards.length)];
-  const cardId = randomCard.id;
-  return {
-    usedIds,
-    cardId,
-    setUsedIds,
+  useEffect(() => {
+    generateRandomNumber();
+  }, []);
+
+  const generateRandomNumber = () => {
+    let availableNumbers = numbers.filter((n) => !usedIds.includes(n));
+
+    if (availableNumbers.length === 0) {
+      setUsedIds([]);
+      availableNumbers = [...numbers];
+    }
+
+    const randomNum = availableNumbers[Math.floor(Math.random() * availableNumbers.length)];
+    setRandomNumber(randomNum);
+    setUsedIds((prevUsedIds) => [...prevUsedIds, randomNum]);
   };
+
+  return { setUsedIds, randomNumber };
 };
