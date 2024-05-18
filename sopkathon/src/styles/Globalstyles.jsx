@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     
     * {
     box-sizing: border-box;
+    
     }
 
     html {
@@ -19,9 +20,12 @@ const GlobalStyle = createGlobalStyle`
 
     width: 37.5rem;
     margin: 0 auto;
+    background-color: #E6F0FF;
+    
     }
 
     html, body, main {
+    
 	height : 100vh;
     overflow-x: hidden;
     &::-webkit-scrollbar {
