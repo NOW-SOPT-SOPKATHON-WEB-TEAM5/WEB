@@ -14,7 +14,7 @@
 첫 만남부터 다음 만남까지 ‘하까?’와 함께 해요.
 </div>
 
-<h2> ✨ (서비스) 주요 기능 </h2>
+<h2> ✨ 하까 주요 기능 </h2>
 <img src="https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/108131226/e16f51fc-08d8-41d4-97fa-c4e818537de9" />
 <h3> 1️⃣ 첫만남 추천 질문 리스트 제공</h3>
 
