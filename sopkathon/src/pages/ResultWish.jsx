@@ -64,6 +64,12 @@ const ResultPage = () => {
           alignItems: 'center',
           justifyContent: 'center',
           gap: '0.8rem',
+          fontFamily: 'Pretendard Variable',
+          fontSize: '16px',
+          fontStyle: 'normal',
+          fontWeight: '600',
+          lineHeight: '130%',
+          textAlign: 'center',
         }}
       >
         {data &&
