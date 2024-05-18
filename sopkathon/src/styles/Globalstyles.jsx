@@ -23,7 +23,10 @@ const GlobalStyle = createGlobalStyle`
 
     html, body, main {
 	height : 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
+    &::-webkit-scrollbar {
+        display: none;
+    }
     }
 
     ul, li {
