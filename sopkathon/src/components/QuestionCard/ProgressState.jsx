@@ -21,7 +21,7 @@ const ProgressState = ({ progress }) => {
     if (isDone) {
       navigate('/recommend');
     }
-  }, [isDone, navigate]);
+  }, [isDone]);
 
   return (
     <ProgressWrapper>
