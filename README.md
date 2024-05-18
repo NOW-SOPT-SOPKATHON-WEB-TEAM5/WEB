@@ -41,8 +41,8 @@
 <br/>
 
 <h2>  📄 컨벤션 및 브랜치 전략 </h2>
-깃 컨벤션 https://imddoy.notion.site/a59da1f0d7444c8a84f7c3f19b2dddc7?pvs=4 <br />
-코딩 컨벤션 https://imddoy.notion.site/07976770fc4440f5b2c2d49c56b4e9cb?pvs=4
+깃 컨벤션 https://imdevdoy.notion.site/a55623a3ef1d4e209e110f34d0a54af4?pvs=4 <br />
+코딩 컨벤션 https://imdevdoy.notion.site/c359ec0da03749a7b696b54d9f1e93b5?pvs=4
 
 <br/>
 
