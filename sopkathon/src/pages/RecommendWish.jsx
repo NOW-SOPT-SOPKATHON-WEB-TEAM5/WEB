@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import RecommendWishTitle from '../components/RecommendWish/RecommendWishTitle';
-import WideBtn from '../components/common/WideBtn';
 import RecommendWishHeader from './../components/RecommendWish/RecommendWishHeader';
 import Wishlist from './../components/RecommendWish/WishList';
 import styled from 'styled-components';
@@ -20,18 +19,24 @@ const RecommendWish = () => {
     ],
   };
 
-  const [checkedIds, setCheckedIds] = useState(() => {
-    const globalChecked = data.global_wishlist
-      .filter((item) => item.checked)
-      .map((item) => item.id);
-    const ourChecked = data.our_wishlist.filter((item) => item.checked).map((item) => item.id);
-    return [...globalChecked, ...ourChecked];
-  });
+  const [checkedGlobalIds, setCheckedGlobalIds] = useState([]);
+  const [checkedOurIds, setCheckedOurIds] = useState([]);
 
-  const handleCheck = (id) => {
-    setCheckedIds((prev) =>
-      prev.includes(id) ? prev.filter((checkedId) => checkedId !== id) : [...prev, id],
-    );
+  const handleCheck = (id, type) => {
+    if (type === 'global') {
+      setCheckedGlobalIds((prev) =>
+        prev.includes(id) ? prev.filter((checkedId) => checkedId !== id) : [...prev, id],
+      );
+    } else if (type === 'our') {
+      setCheckedOurIds((prev) =>
+        prev.includes(id) ? prev.filter((checkedId) => checkedId !== id) : [...prev, id],
+      );
+    }
+  };
+
+  const handleButtonClick = () => {
+    console.log('Global Checked IDs:', checkedGlobalIds);
+    console.log('Our Checked IDs:', checkedOurIds);
   };
 
   return (
@@ -39,18 +44,18 @@ const RecommendWish = () => {
       <RecommendWishHeader />
       <RecommendWishTitle>국룰 위시리스트</RecommendWishTitle>
       <WishlistWrapper>
-        {data.global_wishlist.map((item, index) => (
-          <Wishlist key={index} data={item} onCheck={handleCheck} />
+        {data.global_wishlist.map((item) => (
+          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id, 'global')} />
         ))}
       </WishlistWrapper>
       <WishlistWrapper>
         <RecommendWishTitle>우리만의 위시리스트 선택하기</RecommendWishTitle>
-        {data.our_wishlist.map((item, index) => (
-          <Wishlist key={index} data={item} onCheck={handleCheck} />
+        {data.our_wishlist.map((item) => (
+          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id, 'our')} />
         ))}
       </WishlistWrapper>
       <WideBtnWrapper>
-        <WideBtn name={'우리 다 정했어'} />
+        <WideBtnStyled onClick={handleButtonClick}>우리 다 정했어</WideBtnStyled>
       </WideBtnWrapper>
     </>
   );
@@ -68,4 +73,26 @@ const WideBtnWrapper = styled.section`
   display: flex;
   justify-content: center;
   margin-top: 2.8rem;
+`;
+
+const WideBtnStyled = styled.button`
+  display: flex;
+  flex-direction: row;
+  width: 335px;
+  height: 50px;
+  padding: 18px 8px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  background: #464646;
+  color: white;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  color: #fff;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
 `;
