@@ -15,7 +15,7 @@
 </div>
 
 <h2> ✨ (서비스) 주요 기능 </h2>
-![Slide 16_9 - 60](https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/108131226/e16f51fc-08d8-41d4-97fa-c4e818537de9)
+<img src="https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/108131226/e16f51fc-08d8-41d4-97fa-c4e818537de9" />
 <h3> 1️⃣ 첫만남 추천 질문 리스트 제공</h3>
 
 
