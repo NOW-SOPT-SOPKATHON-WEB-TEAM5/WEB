@@ -2,6 +2,8 @@ import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
 import { useRef } from 'react';
 import styled from 'styled-components';
+import CheckLogo from './../assets/checked.svg?react';
+import { client } from '../utils/apis/axios';
 
 const WideBtn = ({ name, handleDownload }) => {
   return <WideBtnStyled onClick={handleDownload}>{name}</WideBtnStyled>;
@@ -30,8 +32,12 @@ const ResultPage = () => {
         <TopText>다음 만남부터 함께 할 </TopText>
         <SecondText>위시리스트가 완성됐어요!</SecondText>
       </HeaderBox>
-      <div ref={divRef}>
-        <GraphicImg></GraphicImg>
+      <div className="contents-wrapper" ref={divRef}>
+        <div className="contents-box">
+          <ItemWrapper>
+            <CheckStyled></CheckStyled>
+          </ItemWrapper>
+        </div>
       </div>
 
       <Footer>
@@ -47,16 +53,31 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  div {
+  .contents-wrapper {
     display: flex;
     justify-content: center;
+    overflow-y: auto;
+  }
+
+  .contents-box {
+    display: flex;
+    justify-content: center;
+    width: 337px;
+    height: 60px;
+    padding: 16px 14px;
+    align-items: center;
+    border-radius: 18px;
+    background: #fff;
+  }
+  .contents-box::-webkit-scrollbar {
+    display: none;
   }
 `;
 
 const HeaderBox = styled.div`
   width: 237px;
-  height: 50px;
-  margin: 81px 60px 69px 69px;
+
+  margin: 81px 60px 30px 69px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -92,11 +113,10 @@ const Footer = styled.div`
   margin: 90px 20px 20px 20px;
 `;
 
-const GraphicImg = styled.div`
+const ItemWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   width: 335px;
-  height: 400px;
 `;
 
 const WideBtnStyled = styled.button`
@@ -112,11 +132,16 @@ const WideBtnStyled = styled.button`
   background: #3354ae;
   color: white;
   position: sticky;
-  bottom: 0;
   z-index: 2;
   color: #fff;
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
+`;
+
+const CheckStyled = styled(CheckLogo)`
+  width: 28px;
+  height: 28px;
+  margin-right: 12px;
 `;
