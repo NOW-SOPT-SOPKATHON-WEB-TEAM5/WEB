@@ -19,7 +19,6 @@ const Question = ({ setProgress }) => {
       data: '세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터',
     },
   ];
-  const [displayedCards, setDisplayedCards] = useState([cards[0]]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
 
@@ -27,8 +26,6 @@ const Question = ({ setProgress }) => {
     try {
       const nextIndex = currentIndex + 1;
       if (nextIndex < cards.length) {
-        setDisplayedCards((prevCards) => [...prevCards, cards[nextIndex]]);
-        setCurrentIndex(nextIndex);
         sliderRef.current.slickGoTo(nextIndex);
         setProgress((prev) => prev + 1);
       }
@@ -41,7 +38,6 @@ const Question = ({ setProgress }) => {
     try {
       const nextIndex = currentIndex + 1;
       if (nextIndex < cards.length) {
-        setDisplayedCards((prevCards) => [...prevCards, cards[nextIndex]]);
         setCurrentIndex(nextIndex);
         sliderRef.current.slickGoTo(nextIndex);
       }
@@ -63,15 +59,15 @@ const Question = ({ setProgress }) => {
   return (
     <CardWrapper>
       <SliderWrapper ref={sliderRef} {...settings}>
-        {displayedCards.map((card, index) => (
+        {cards.map((card, index) => (
           <Slide key={index} $isActive={index === currentIndex}>
             <h3>{card.data}</h3>
           </Slide>
         ))}
       </SliderWrapper>
       <ButtonWrapper>
-        <button onClick={handleApprove}>선택</button>
-        <button onClick={handleNextCard}>넘기기</button>
+        <SelectBtn onClick={handleApprove}>선택</SelectBtn>
+        <NextBtn onClick={handleNextCard}>넘기기</NextBtn>
       </ButtonWrapper>
     </CardWrapper>
   );
@@ -83,29 +79,32 @@ const CardWrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 3rem;
   align-items: center;
   gap: 2rem;
 `;
 
 const SliderWrapper = styled(Slider)`
-  width: 30rem;
+  width: 100%;
   .slick-slide > div {
     padding: 0 1rem;
   }
   .slick-track {
-    height: 25rem;
+    height: 40rem;
   }
   .slick-list {
-    padding: 1rem;
   }
 `;
 
 const Slide = styled.div`
-  padding: 1rem;
+  width: ${({ $isActive }) => ($isActive ? '23rem' : '20rem')};
+  height: ${({ $isActive }) => ($isActive ? '36rem' : '32rem')};
+  padding: 0.5rem;
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.gray400};
-  transition: opacity 0.3s;
+  transition:
+    width 0.5s,
+    height 0.5s,
+    opacity 0.5s;
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.5)};
 
   h3 {
@@ -120,4 +119,20 @@ const Slide = styled.div`
 const ButtonWrapper = styled.section`
   display: flex;
   gap: 2rem;
+`;
+
+const SelectBtn = styled.button`
+  width: 16.3rem;
+  height: 5rem;
+  padding: 1.8rem 0.8rem;
+  border-radius: 1.2rem;
+  background-color: ${({ theme }) => theme.colors.blue05};
+`;
+
+const NextBtn = styled.button`
+  width: 16.3rem;
+  height: 5rem;
+  padding: 1.8rem 0.8rem;
+  border-radius: 1.2rem;
+  background-color: ${({ theme }) => theme.colors.blue02};
 `;

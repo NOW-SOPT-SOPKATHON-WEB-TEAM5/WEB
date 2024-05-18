@@ -9,6 +9,16 @@ const colors = {
   gray400: '#CACDD2',
   gray300: '#E9EBED',
   gray100: '#F7F8F9',
+  blue01: '#091336',
+  blue02: '#3354AE',
+  blue03: '#4161B7',
+  blue04: '#C0DAFF',
+  blue05: '#D0E3FF',
+  blue06: '#E6F0FF',
+  blue07: '#F3F8FF',
+  yellow01: '#FFB64D',
+  yellow02: '#FFD9A2',
+  yellow03: '#FEEDD4',
 };
 
 const fonts = {
