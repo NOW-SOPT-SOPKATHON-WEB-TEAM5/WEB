@@ -21,8 +21,8 @@ const RecommendWish = () => {
             memberId: 1,
           },
         });
-        setData(response.data);
-        console.log(data);
+        setData(response.data.data);
+        console.log(response.data.data);
       } catch (error) {
         console.error();
       }
@@ -41,23 +41,21 @@ const RecommendWish = () => {
   const handleButtonClick = async () => {
     const uncheckedIds = data.map((item) => item.wishId).filter((id) => !checkedIds.includes(id));
     try {
-      const response = await axios.delete(
-        baseURL + `/api/v1/finalWishes`,
-        {
+      const response = await axios({
+        method: 'delete',
+        url: baseURL + '/api/v1/finalWishes',
+        data: {
           wishIds: uncheckedIds,
         },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            memberId: 1,
-          },
+        headers: {
+          'Content-Type': 'application/json',
+          memberId: 1,
         },
-      );
+      });
+      navigate('/result');
     } catch (error) {
-      console.error();
+      console.error('Failed to delete wishes:', error);
     }
-    navigate('/result');
   };
 
   return (
@@ -67,7 +65,7 @@ const RecommendWish = () => {
       <WishlistWrapper>
         {data &&
           data
-            .filter((item) => item.questionId === 0)
+            .filter((item) => item.questionId === 1000)
             .map((item) => (
               <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
             ))}
@@ -76,7 +74,7 @@ const RecommendWish = () => {
         <RecommendWishTitle>우리만의 위시리스트 선택하기</RecommendWishTitle>
         {data &&
           data
-            .filter((item) => item.questionId !== 0)
+            .filter((item) => item.questionId !== 1000)
             .map((item) => (
               <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
             ))}
