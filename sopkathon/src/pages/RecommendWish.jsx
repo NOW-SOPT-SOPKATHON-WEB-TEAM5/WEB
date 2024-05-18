@@ -1,5 +1,5 @@
 import RecommendWishTitle from '../components/RecommendWish/RecommendWishTitle';
-import WideBtn from '../components/common/WideBtn';
+
 import RecommendWishHeader from './../components/RecommendWish/RecommendWishHeader';
 import Wishlist from './../components/RecommendWish/WishList';
 import styled from 'styled-components';
@@ -34,9 +34,7 @@ const RecommendWish = () => {
           <Wishlist key={index} data={item} />
         ))}
       </WishlistWrapper>
-      <WideBtnWrapper>
-        <WideBtn name={'우리 다 정했어'} />
-      </WideBtnWrapper>
+      <WideBtnWrapper></WideBtnWrapper>
     </>
   );
 };
