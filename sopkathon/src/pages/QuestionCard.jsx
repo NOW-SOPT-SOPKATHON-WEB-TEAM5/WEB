@@ -7,7 +7,9 @@ const QuestionCard = () => {
   const [progress, setProgress] = useState(0);
   return (
     <QuestionCardWrapper>
-      <ProgressState progress={progress} />
+      <ProgressLayout>
+        <ProgressState progress={progress} />
+      </ProgressLayout>
       <Question setProgress={setProgress} />
     </QuestionCardWrapper>
   );
@@ -17,4 +19,11 @@ export default QuestionCard;
 
 const QuestionCardWrapper = styled.div`
   padding: 5.7rem 0rem 2rem 0rem;
+`;
+
+const ProgressLayout = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 1.8rem;
 `;
