@@ -39,7 +39,7 @@ const Question = ({ setProgress }) => {
         setProgress((prev) => prev + 1);
       }
     } catch (error) {
-      console.error('데이터를 가져오는 중 오류 발생:', error);
+      console.error();
     }
   };
 
@@ -51,7 +51,7 @@ const Question = ({ setProgress }) => {
         sliderRef.current.slickGoTo(nextIndex);
       }
     } catch (error) {
-      console.error('데이터를 가져오는 중 오류 발생:', error);
+      console.error();
     }
   };
 
