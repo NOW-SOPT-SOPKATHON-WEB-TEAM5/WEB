@@ -66,8 +66,8 @@ const Question = ({ setProgress }) => {
         ))}
       </SliderWrapper>
       <ButtonWrapper>
-        <button onClick={handleApprove}>선택</button>
-        <button onClick={handleNextCard}>넘기기</button>
+        <SelectBtn onClick={handleApprove}>선택</SelectBtn>
+        <NextBtn onClick={handleNextCard}>넘기기</NextBtn>
       </ButtonWrapper>
     </CardWrapper>
   );
@@ -119,4 +119,14 @@ const Slide = styled.div`
 const ButtonWrapper = styled.section`
   display: flex;
   gap: 2rem;
+`;
+
+const SelectBtn = styled.button`
+  padding: 1.8rem 0.8rem;
+  background-color: ${({ theme }) => theme.colors.blue05};
+`;
+
+const NextBtn = styled.button`
+  padding: 1.8rem 0.8rem;
+  background-color: ${({ theme }) => theme.colors.blue02};
 `;
