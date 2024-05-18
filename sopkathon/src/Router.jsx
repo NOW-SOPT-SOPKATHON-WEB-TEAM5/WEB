@@ -4,7 +4,6 @@ import ResultPage from './components/ResultWish/ResultWish';
 import QuestionCard from './pages/QuestionCard';
 import RecmmendWish from './pages/RecommendWish';
 
-
 const Router = () => {
   return (
     <BrowserRouter>
@@ -12,7 +11,7 @@ const Router = () => {
         <Route path="/" element={<Main />} />
         <Route path="/result" element={<ResultPage />} />
         <Route path="/question" element={<QuestionCard />} />
-        <Route path="/recommendwish" element={<RecmmendWish />} />
+        <Route path="/recommend" element={<RecmmendWish />} />
       </Routes>
     </BrowserRouter>
   );

@@ -7,15 +7,15 @@ import styled from 'styled-components';
 const RecommendWish = () => {
   const data = {
     global_wishlist: [
-      { title: '런닝을 한강에서 뛰기', checked: true },
-      { title: '런닝을 한강에서 뛰기', checked: false },
+      { id: 1, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 2, title: '런닝을 한강에서 뛰기', checked: false },
     ],
     our_wishlist: [
-      { title: '런닝을 한강에서 뛰기', checked: true },
-      { title: '런닝을 한강에서 뛰기', checked: true },
-      { title: '런닝을 한강에서 뛰기', checked: true },
-      { title: '런닝을 한강에서 뛰기', checked: true },
-      { title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 1, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 2, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 3, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 4, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 5, title: '런닝을 한강에서 뛰기', checked: true },
     ],
   };
 
