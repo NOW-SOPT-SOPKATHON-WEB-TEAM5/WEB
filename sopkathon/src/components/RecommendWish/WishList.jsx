@@ -17,7 +17,7 @@ const Wishlist = ({ data, onCheck }) => {
       isChecked={isChecked}
       color={isChecked ? '#fff' : '#F3F8FF'}
     >
-      <WishlistContent>{data.title}</WishlistContent>
+      <WishlistContent>{data.content}</WishlistContent>
       {isChecked ? <StyledIcChecked /> : <StyledIcNChecked />}
     </WishlistWrapper>
   );
@@ -43,7 +43,6 @@ const WishlistWrapper = styled.label`
 `;
 
 const WishlistContent = styled.p`
-  color: #000;
   font-family: Pretendard;
   font-size: 1.6rem;
   font-style: normal;

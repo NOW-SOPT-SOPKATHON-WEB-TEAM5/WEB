@@ -6,13 +6,26 @@ import styled from 'styled-components';
 
 const RecommendWish = () => {
   const data = [
-    { id: 1, title: '런닝을 한강에서 뛰기', checked: false },
-    { id: 2, title: '런닝을 한강에서 뛰기', checked: false },
-    { id: 3, title: '런닝을 한강에서 뛰기', checked: false },
-    { id: 4, title: '런닝을 한강에서 뛰기', checked: false },
-    { id: 5, title: '런닝을 한강에서 뛰기', checked: false },
-    { id: 6, title: '런닝을 한강에서 뛰기', checked: false },
-    { id: 7, title: '런닝을 한강에서 뛰기', checked: false },
+    {
+      wishId: 2,
+      questionId: 1,
+      content: '내용11',
+    },
+    {
+      wishId: 3,
+      questionId: 3,
+      content: '내용33',
+    },
+    {
+      wishId: 4,
+      questionId: 3,
+      content: '내용44',
+    },
+    {
+      wishId: 5,
+      questionId: 0,
+      content: '내용33',
+    },
   ];
 
   const [checkedIds, setCheckedIds] = useState([]);
@@ -24,7 +37,8 @@ const RecommendWish = () => {
   };
 
   const handleButtonClick = () => {
-    console.log('checked IDs:', checkedIds);
+    const uncheckedIds = data.map((item) => item.wishId).filter((id) => !checkedIds.includes(id));
+    console.log('unchecked IDs:', uncheckedIds);
   };
 
   return (
@@ -32,15 +46,19 @@ const RecommendWish = () => {
       <RecommendWishHeader />
       <RecommendWishTitle>국룰 위시리스트</RecommendWishTitle>
       <WishlistWrapper>
-        {data.map((item) => (
-          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id)} />
-        ))}
+        {data
+          .filter((item) => item.questionId === 0)
+          .map((item) => (
+            <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
+          ))}
       </WishlistWrapper>
       <WishlistWrapper>
         <RecommendWishTitle>우리만의 위시리스트 선택하기</RecommendWishTitle>
-        {data.map((item) => (
-          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id)} />
-        ))}
+        {data
+          .filter((item) => item.questionId !== 0)
+          .map((item) => (
+            <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
+          ))}
       </WishlistWrapper>
       <WideBtnWrapper>
         <WideBtnStyled onClick={handleButtonClick}>
@@ -78,12 +96,10 @@ const WideBtnStyled = styled.button`
   gap: 8px;
   border-radius: 12px;
   background-color: ${({ theme }) => theme.colors.blue02};
-
   color: white;
   position: sticky;
   bottom: 0;
   z-index: 2;
-  color: #fff;
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
@@ -96,7 +112,6 @@ const ListLength = styled.span`
   background-color: ${({ theme }) => theme.colors.white};
   border-radius: 50%;
   color: ${({ theme }) => theme.colors.blue02};
-
   display: flex;
   align-items: center;
   justify-content: center;
