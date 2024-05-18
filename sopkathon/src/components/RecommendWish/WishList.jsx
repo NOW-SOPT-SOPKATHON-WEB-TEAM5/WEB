@@ -3,11 +3,12 @@ import IcChecked from './../../assets/IcChecked.svg?react';
 import IcNChecked from './../../assets/IcNChecked.svg?react';
 import { useState } from 'react';
 
-const Wishlist = ({ data }) => {
+const Wishlist = ({ data, onCheck }) => {
   const [isChecked, setChecked] = useState(data.checked);
 
   const handleChecked = () => {
     setChecked(!isChecked);
+    onCheck(data.id);
   };
 
   return (
