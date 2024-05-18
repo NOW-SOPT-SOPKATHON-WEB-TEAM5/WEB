@@ -54,7 +54,7 @@ const ResultPage = () => {
         <SecondText>위시리스트가 완성됐어요!</SecondText>
       </HeaderBox>
       <div className="contents-wrapper" ref={divRef}>
-        {data &&
+        {data.content &&
           data.content.map((item) => (
             <div className="contents-box" key={item.index}>
               <ItemWrapper>
