@@ -124,15 +124,25 @@ const ButtonWrapper = styled.section`
 const SelectBtn = styled.button`
   width: 16.3rem;
   height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 1.8rem 0.8rem;
   border-radius: 1.2rem;
   background-color: ${({ theme }) => theme.colors.blue05};
+  color: ${({ theme }) => theme.colors.blue02};
+  ${({ theme }) => theme.fonts.Body1};
 `;
 
 const NextBtn = styled.button`
   width: 16.3rem;
   height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 1.8rem 0.8rem;
   border-radius: 1.2rem;
   background-color: ${({ theme }) => theme.colors.blue02};
+  color: ${({ theme }) => theme.colors.blue05};
+  ${({ theme }) => theme.fonts.Body1};
 `;
