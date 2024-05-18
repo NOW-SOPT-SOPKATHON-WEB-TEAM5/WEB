@@ -114,7 +114,7 @@ const SliderWrapper = styled(Slider)`
     padding: 0 1.8rem;
   }
   .slick-track {
-    height: 38rem;
+    height: 37rem;
   }
 `;
 
