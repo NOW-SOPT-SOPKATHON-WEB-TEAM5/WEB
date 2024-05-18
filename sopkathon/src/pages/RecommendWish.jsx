@@ -1,32 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import RecommendWishTitle from '../components/RecommendWish/RecommendWishTitle';
 import RecommendWishHeader from './../components/RecommendWish/RecommendWishHeader';
 import Wishlist from './../components/RecommendWish/WishList';
 import styled from 'styled-components';
+// import { useNavigate } from 'react-router-dom';
+const baseURL = import.meta.env.VITE_DEV_BASE_URL;
+import axios from 'axios';
 
 const RecommendWish = () => {
-  const data = [
-    {
-      wishId: 2,
-      questionId: 1,
-      content: '내용11',
-    },
-    {
-      wishId: 3,
-      questionId: 3,
-      content: '내용33',
-    },
-    {
-      wishId: 4,
-      questionId: 3,
-      content: '내용44',
-    },
-    {
-      wishId: 5,
-      questionId: 0,
-      content: '내용33',
-    },
-  ];
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(baseURL + `api/v1/finalWishes`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            memberId: 1,
+          },
+        });
+        setData(response.data);
+        console.log(data);
+      } catch (error) {
+        console.error();
+      }
+    };
+    fetchData();
+  }, []);
 
   const [checkedIds, setCheckedIds] = useState([]);
 
@@ -38,7 +38,6 @@ const RecommendWish = () => {
 
   const handleButtonClick = () => {
     const uncheckedIds = data.map((item) => item.wishId).filter((id) => !checkedIds.includes(id));
-    console.log('unchecked IDs:', uncheckedIds);
   };
 
   return (
@@ -46,19 +45,21 @@ const RecommendWish = () => {
       <RecommendWishHeader />
       <RecommendWishTitle>국룰 위시리스트</RecommendWishTitle>
       <WishlistWrapper>
-        {data
-          .filter((item) => item.questionId === 0)
-          .map((item) => (
-            <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
-          ))}
+        {data &&
+          data
+            .filter((item) => item.questionId === 0)
+            .map((item) => (
+              <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
+            ))}
       </WishlistWrapper>
       <WishlistWrapper>
         <RecommendWishTitle>우리만의 위시리스트 선택하기</RecommendWishTitle>
-        {data
-          .filter((item) => item.questionId !== 0)
-          .map((item) => (
-            <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
-          ))}
+        {data &&
+          data
+            .filter((item) => item.questionId !== 0)
+            .map((item) => (
+              <Wishlist key={item.wishId} data={item} onCheck={() => handleCheck(item.wishId)} />
+            ))}
       </WishlistWrapper>
       <WideBtnWrapper>
         <WideBtnStyled onClick={handleButtonClick}>
