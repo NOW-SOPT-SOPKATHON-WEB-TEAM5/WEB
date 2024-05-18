@@ -23,6 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
     html, body, main {
 	height : 100vh;
+    overflow: hidden;
     }
 
     ul, li {
