@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import Logo from './../../assets/mainLogo.svg?react';
+import BackgroundImg from '/src/assets/home.png';
 
 const WideBtn = ({ name, handleLocation }) => {
   return <WideBtnStyled onClick={handleLocation}>{name}</WideBtnStyled>;
@@ -13,19 +14,24 @@ const MainPage = () => {
   };
 
   return (
-    <Wrapper>
-      <Header>
-        <StyledIcon />
-      </Header>
-      <GraphicWrapper></GraphicWrapper>
-      <Footer>
-        <WideBtn name={'시작하기'} handleLocation={handleLocation}></WideBtn>
-      </Footer>
-    </Wrapper>
+    <TotalWrapper>
+      <Wrapper>
+        <Footer>
+          <WideBtn name={'시작하기'} handleLocation={handleLocation}></WideBtn>
+        </Footer>
+      </Wrapper>
+    </TotalWrapper>
   );
 };
 
 export default MainPage;
+
+const TotalWrapper = styled.div`
+  background-image: url(${BackgroundImg});
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+`;
 
 const Wrapper = styled.div`
   display: flex;
@@ -34,37 +40,16 @@ const Wrapper = styled.div`
   padding: 20px;
 `;
 
-const StyledIcon = styled(Logo)`
-  width: 124px;
-  height: 60px;
-  margin-top: 71px;
-  margin-bottom: 48px;
-`;
-
-const Header = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-
-const GraphicWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-
-  height: 303px;
-  margin-top: 44px;
-`;
-
 const Footer = styled.div`
   display: flex;
   justify-content: center;
 `;
 
 const WideBtnStyled = styled.button`
-  display: flex;
-  flex-direction: row;
   width: 335px;
   height: 50px;
   padding: 18px 8px;
+  margin-top: 5px;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -72,7 +57,7 @@ const WideBtnStyled = styled.button`
   background: #3354ae;
   color: white;
   position: sticky;
-  bottom: 0;
+
   z-index: 2;
   color: #fff;
   font-family: Pretendard;
