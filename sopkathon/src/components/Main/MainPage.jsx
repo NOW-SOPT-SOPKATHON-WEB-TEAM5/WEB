@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import BackgroundImg from '/src/assets/home.png';
+import styled from 'styled-components';
+import BackgroundImg from '/src/assets/home.svg';
 
 const WideBtn = ({ name, handleLocation }) => {
   return <WideBtnStyled onClick={handleLocation}>{name}</WideBtnStyled>;
