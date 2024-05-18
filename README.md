@@ -1,22 +1,25 @@
 <div align="center">
 
-<h2> 하까 </h2>
+<h2>하까</h2>
 
 <img src=""  alt="서비스대표-이미지" />
-<div>(서비스 소개)</div>
+<h3>‘사람(들)과 처음 만나 우리의 관계는 0에서 쌓아가는 동시에, 사람(들)과의 거리는 0에 가까워 진다.’</h3>
+<h3>‘처음 만난 우리의 거리는 0에 가까워 지는 동시에 우리의 관계는 0에서 쌓아간다.’</h3>
 
+첫 만남 대화 카드로 사람(들)과의 거리를 좁히고,
+위시 리스트를 선택해 사람(들)과의 관계를 쌓아가세요.
+
+첫 만남부터 다음 만남까지 ‘하까?’와 함께 해요.
 </div>
 
 <h2> ✨ (서비스) 주요 기능 </h2>
 
-<h3> 1️⃣ (기능) </h3>
+<h3> 1️⃣ 첫만남 추천 질문 리스트 제공</h3>
 <img src=""  alt="기능1-대표이미지" />
-<div ><strong> (강조단어) </strong> (기능설명)  <br/></div>
 
 
-<h3> 2️⃣ (기능) </h3>
+<h3> 2️⃣ 맞춤형 위시리스트 제공</h3>
 <img src=""  alt="기능1-대표이미지" />
-<div ><strong> (강조단어) </strong> (기능설명)  <br/></div>
 
 
 ## 🌱 WEB Developer
@@ -59,11 +62,22 @@ WEB/
 │   │   ├── assets/
 │   │   ├── components/
 │   │   │   └── common/
+│   │   │   └── Main/
+│   │   │   └── QuestionCard/
+│   │   │   └── RecommendWish/
+│   │   │   └── ResultWish/
 │   │   ├── constants/
 │   │   ├── pages/
+│   │   │   └── Main.jsx
+│   │   │   └── QuestionCard.jsx
+│   │   │   └── RecommendWish.jsx
+│   │   │   └── ResultWish.jsx
 │   │   ├── styles/
+│   │   │   └── GlobalStyles.jsx
+│   │   │   └── theme.js
 │   │   ├── utils/
 │   │   │   └── apis/
+│   │   ├── apis/
 │   │   ├── App.jsx
 │   │   ├── main.jsx
 │   │   └── Router.jsx

@@ -21,6 +21,10 @@ const GlobalStyle = createGlobalStyle`
     margin: 0 auto;
     }
 
+    html, body, main {
+	height : 100vh;
+    }
+
     ul, li {
     padding-left: 0;
     list-style: none;
