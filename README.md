@@ -2,7 +2,8 @@
 
 <h2>하까</h2>
 
-<img src=""  alt="서비스대표-이미지" />
+![표지](https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/90364711/5074b738-cf7d-4401-b4c2-b245228c79a2)
+
 <h3>‘사람(들)과 처음 만나 우리의 관계는 0에서 쌓아가는 동시에, 사람(들)과의 거리는 0에 가까워 진다.’</h3>
 <h3>‘처음 만난 우리의 거리는 0에 가까워 지는 동시에 우리의 관계는 0에서 쌓아간다.’</h3>
 
@@ -99,4 +100,6 @@ WEB/
 <img src="https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/90364711/ca3321d9-32df-49ea-a507-146eb6a2412b" width="400px" />
  
 <h3>After</h3>
+![image](https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/90364711/d678a439-85e8-4080-9aa9-93f2d965eaee)
+
 <img src="" alt="웨비 팀원들 사진 (after)"/>
