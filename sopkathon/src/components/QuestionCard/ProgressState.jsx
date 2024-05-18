@@ -1,9 +1,27 @@
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import IcChecked from '../../assets/IcProgressChecked.svg?react';
 import IcNotchecked from '../../assets/IcProgressNotChecked.svg?react';
 
 const ProgressState = ({ progress }) => {
   const progressArray = Array.from({ length: progress });
+  const [isDone, setIsDone] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (progressArray.length === 3) {
+      setTimeout(() => {
+        setIsDone(true);
+      }, 1000);
+    }
+  }, [progressArray]);
+
+  useEffect(() => {
+    if (isDone) {
+      navigate('/recommend');
+    }
+  }, [isDone, navigate]);
 
   return (
     <ProgressWrapper>
