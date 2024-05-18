@@ -28,10 +28,12 @@ const RecommendWish = () => {
           <Wishlist key={index} data={item} />
         ))}
       </WishlistWrapper>
-      <RecommendWishTitle>우리만의 위시리스트 선택하기</RecommendWishTitle>
-      {data.our_wishlist.map((item, index) => (
-        <Wishlist key={index} data={item} />
-      ))}
+      <WishlistWrapper>
+        <RecommendWishTitle>우리만의 위시리스트 선택하기</RecommendWishTitle>
+        {data.our_wishlist.map((item, index) => (
+          <Wishlist key={index} data={item} />
+        ))}
+      </WishlistWrapper>
       <WideBtnWrapper>
         <WideBtn name={'우리 다 정했어'} />
       </WideBtnWrapper>

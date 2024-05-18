@@ -13,7 +13,7 @@ const Wishlist = ({ data }) => {
   return (
     <WishlistWrapper onClick={handleChecked}>
       <WishlistContent>{data.title}</WishlistContent>
-      {isChecked ? <IcChecked /> : <IcNChecked />}
+      {isChecked ? <StyledIcChecked /> : <StyledIcNChecked />}
     </WishlistWrapper>
   );
 };
@@ -42,4 +42,14 @@ const WishlistContent = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+`;
+
+const StyledIcChecked = styled(IcChecked)`
+  width: 2rem;
+  height: auto;
+`;
+
+const StyledIcNChecked = styled(IcNChecked)`
+  width: 2rem;
+  height: auto;
 `;
