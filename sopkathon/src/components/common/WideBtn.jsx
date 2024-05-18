@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-const WideBtn = ({ name }) => {
-  return <WideBtnStyled>{name}</WideBtnStyled>;
+const WideBtn = ({ name, handleDownload }) => {
+  return <WideBtnStyled onClick={handleDownload}>{name}</WideBtnStyled>;
 };
 
 export default WideBtn;

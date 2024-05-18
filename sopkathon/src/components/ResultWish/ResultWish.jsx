@@ -1,19 +1,38 @@
+import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver';
+import { useRef } from 'react';
 import styled from 'styled-components';
 import WideBtn from '../common/WideBtn';
 
 const ResultPage = () => {
+  const divRef = useRef(null);
+  const handleDownload = async () => {
+    if (!divRef.current) return;
+
+    try {
+      const div = divRef.current;
+      const canvas = await html2canvas(div, { scale: 2 });
+      canvas.toBlob((blob) => {
+        if (blob !== null) {
+          saveAs(blob, 'final_wish.png');
+        }
+      });
+    } catch (error) {
+      alert('사진 다운로드에 실패하셨습니다.');
+    }
+  };
   return (
     <Wrapper>
       <HeaderBox>
         <TopText>다음 만남부터 함께 할 </TopText>
         <SecondText>위시리스트가 완성됐어요!</SecondText>
       </HeaderBox>
-      <div>
+      <div ref={divRef}>
         <GraphicImg></GraphicImg>
       </div>
 
       <Footer>
-        <WideBtn name={'이미지 저장하기'}></WideBtn>
+        <WideBtn name={'이미지 저장하기'} handleDownload={handleDownload}></WideBtn>
       </Footer>
     </Wrapper>
   );
