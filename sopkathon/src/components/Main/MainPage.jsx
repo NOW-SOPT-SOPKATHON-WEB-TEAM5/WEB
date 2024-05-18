@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
+import Logo from './../../assets/mainLogo.svg?react';
 
 const WideBtn = ({ name, handleLocation }) => {
   return <WideBtnStyled onClick={handleLocation}>{name}</WideBtnStyled>;
@@ -13,7 +14,9 @@ const MainPage = () => {
 
   return (
     <Wrapper>
-      <Header></Header>
+      <Header>
+        <StyledIcon />
+      </Header>
       <GraphicWrapper></GraphicWrapper>
       <Footer>
         <WideBtn name={'시작하기'} handleLocation={handleLocation}></WideBtn>
@@ -28,19 +31,25 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 20px;
+`;
+
+const StyledIcon = styled(Logo)`
+  width: 124px;
+  height: 60px;
+  margin-top: 71px;
+  margin-bottom: 48px;
 `;
 
 const Header = styled.div`
   display: flex;
   justify-content: center;
-  width: 245px;
-  height: 70px;
 `;
 
 const GraphicWrapper = styled.div`
   display: flex;
   justify-content: center;
-  width: 335px;
+
   height: 303px;
   margin-top: 44px;
 `;
