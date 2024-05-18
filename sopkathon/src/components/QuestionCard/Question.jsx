@@ -20,7 +20,10 @@ const Question = ({ setProgress }) => {
         const response = await getQuestion();
         console.log(response.data.data);
         if (Array.isArray(response.data.data)) {
-          setQuestions(response.data.data); // 데이터를 배열로 감싸지 않음
+          const filteredQuestions = response.data.data.filter(
+            (question) => question.question_id !== 1000,
+          );
+          setQuestions(filteredQuestions);
         } else {
           console.error('Fetched data is not an array');
         }
