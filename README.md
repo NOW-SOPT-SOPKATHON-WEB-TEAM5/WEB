@@ -59,9 +59,19 @@ WEB/
 │   │   ├── assets/
 │   │   ├── components/
 │   │   │   └── common/
+│   │   │   └── Main/
+│   │   │   └── QuestionCard/
+│   │   │   └── RecommendWish/
+│   │   │   └── ResultWish/
 │   │   ├── constants/
 │   │   ├── pages/
+│   │   │   └── Main.jsx
+│   │   │   └── QuestionCard.jsx
+│   │   │   └── RecommendWish.jsx
+│   │   │   └── ResultWish.jsx
 │   │   ├── styles/
+│   │   │   └── GlobalStyles.jsx
+│   │   │   └── theme.js
 │   │   ├── utils/
 │   │   │   └── apis/
 │   │   ├── App.jsx
