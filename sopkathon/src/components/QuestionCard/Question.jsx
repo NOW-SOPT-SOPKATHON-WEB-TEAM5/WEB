@@ -79,7 +79,6 @@ const CardWrapper = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 2rem;
   align-items: center;
   gap: 2rem;
 `;
@@ -90,14 +89,15 @@ const SliderWrapper = styled(Slider)`
     padding: 0 1rem;
   }
   .slick-track {
-    height: 25rem;
+    height: 40rem;
   }
   .slick-list {
   }
 `;
 
 const Slide = styled.div`
-  height: ${({ $isActive }) => ($isActive ? '22rem' : '20rem')};
+  width: ${({ $isActive }) => ($isActive ? '23rem' : '20rem')};
+  height: ${({ $isActive }) => ($isActive ? '36rem' : '32rem')};
   padding: 0.5rem;
   border-radius: 0.8rem;
   background-color: ${({ theme }) => theme.colors.gray400};
@@ -122,11 +122,17 @@ const ButtonWrapper = styled.section`
 `;
 
 const SelectBtn = styled.button`
+  width: 16.3rem;
+  height: 5rem;
   padding: 1.8rem 0.8rem;
+  border-radius: 1.2rem;
   background-color: ${({ theme }) => theme.colors.blue05};
 `;
 
 const NextBtn = styled.button`
+  width: 16.3rem;
+  height: 5rem;
   padding: 1.8rem 0.8rem;
+  border-radius: 1.2rem;
   background-color: ${({ theme }) => theme.colors.blue02};
 `;

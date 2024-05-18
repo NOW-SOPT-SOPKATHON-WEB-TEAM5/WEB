@@ -16,5 +16,5 @@ const QuestionCard = () => {
 export default QuestionCard;
 
 const QuestionCardWrapper = styled.div`
-  padding: 1rem;
+  padding: 5.7rem 0rem 2rem 0rem;
 `;
