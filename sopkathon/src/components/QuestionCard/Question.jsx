@@ -18,6 +18,14 @@ const Question = ({ setProgress }) => {
       id: 3,
       data: '세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터',
     },
+    {
+      id: 4,
+      data: '두 번째 카드 데이터두 번째 카드 데이터두 번째 카드 데이터두 번째 카드 데이터',
+    },
+    {
+      id: 5,
+      data: '세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터',
+    },
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
   const sliderRef = useRef(null);
@@ -25,7 +33,7 @@ const Question = ({ setProgress }) => {
   const handleApprove = async () => {
     try {
       const nextIndex = currentIndex + 1;
-      if (nextIndex < cards.length) {
+      if (nextIndex <= cards.length) {
         sliderRef.current.slickGoTo(nextIndex);
         setProgress((prev) => prev + 1);
       }
@@ -65,6 +73,7 @@ const Question = ({ setProgress }) => {
           </Slide>
         ))}
       </SliderWrapper>
+      <QuestionTxt>즉흥적인 일탈 해본 적 있나요?</QuestionTxt>
       <ButtonWrapper>
         <SelectBtn onClick={handleApprove}>선택</SelectBtn>
         <NextBtn onClick={handleNextCard}>넘기기</NextBtn>
@@ -89,7 +98,7 @@ const SliderWrapper = styled(Slider)`
     padding: 0 1rem;
   }
   .slick-track {
-    height: 40rem;
+    height: 36rem;
   }
   .slick-list {
   }
@@ -106,7 +115,6 @@ const Slide = styled.div`
     height 0.5s,
     opacity 0.5s;
   opacity: ${({ $isActive }) => ($isActive ? 1 : 0.5)};
-
   h3 {
     height: 20rem;
     border-radius: 0.8rem;
@@ -114,6 +122,11 @@ const Slide = styled.div`
     justify-content: center;
     align-items: center;
   }
+`;
+
+const QuestionTxt = styled.span`
+  padding: 2.6rem 8rem 2.5rem 8.1rem;
+  ${({ theme }) => theme.fonts.Heading3};
 `;
 
 const ButtonWrapper = styled.section`
