@@ -10,17 +10,16 @@
 첫 만남 대화 카드로 사람(들)과의 거리를 좁히고,
 위시 리스트를 선택해 사람(들)과의 관계를 쌓아가세요.
 
+
 첫 만남부터 다음 만남까지 ‘하까?’와 함께 해요.
 </div>
 
 <h2> ✨ (서비스) 주요 기능 </h2>
-
+<img src="https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/108131226/e16f51fc-08d8-41d4-97fa-c4e818537de9" />
 <h3> 1️⃣ 첫만남 추천 질문 리스트 제공</h3>
-<img src=""  alt="기능1-대표이미지" />
 
 
 <h3> 2️⃣ 맞춤형 위시리스트 제공</h3>
-<img src=""  alt="기능1-대표이미지" />
 
 
 ## 🌱 WEB Developer
@@ -100,6 +99,5 @@ WEB/
 <img src="https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/90364711/ca3321d9-32df-49ea-a507-146eb6a2412b" width="400px" />
  
 <h3>After</h3>
-![image](https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/90364711/d678a439-85e8-4080-9aa9-93f2d965eaee)
 
-<img src="" alt="웨비 팀원들 사진 (after)"/>
+<img src="https://github.com/NOW-SOPT-SOPKATHON-WEB-TEAM5/WEB/assets/108131226/c8ef0f60-820a-435f-9e87-1b65df8d9c09" width="400px" />
