@@ -1,5 +1,5 @@
-import { createGlobalStyle } from "styled-components";
-import reset from "styled-reset";
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
 
@@ -16,6 +16,9 @@ const GlobalStyle = createGlobalStyle`
 
     font-size: 62.5%;
     user-select: none;
+
+    width: 37.5rem;
+    margin: 0 auto;
     }
 
     ul, li {
