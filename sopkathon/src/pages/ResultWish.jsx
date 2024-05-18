@@ -1,9 +1,12 @@
 import html2canvas from 'html2canvas';
 import { saveAs } from 'file-saver';
-import { useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import CheckLogo from './../assets/checked.svg?react';
-import { client } from '../utils/apis/axios';
+// import { client } from '../utils/apis/axios';
+const baseURL = import.meta.env.VITE_DEV_BASE_URL;
+
+import axios from 'axios';
 
 const WideBtn = ({ name, handleDownload }) => {
   return <WideBtnStyled onClick={handleDownload}>{name}</WideBtnStyled>;
@@ -26,6 +29,26 @@ const ResultPage = () => {
       alert('사진 다운로드에 실패하셨습니다.');
     }
   };
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(baseURL + `/api/v1/finalWishes`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            memberId: 1,
+          },
+        });
+        setData(response.data.data);
+        console.log(response.data.data);
+      } catch (error) {
+        console.error();
+      }
+    };
+    fetchData();
+  }, []);
   return (
     <Wrapper>
       <HeaderBox>
@@ -33,11 +56,15 @@ const ResultPage = () => {
         <SecondText>위시리스트가 완성됐어요!</SecondText>
       </HeaderBox>
       <div className="contents-wrapper" ref={divRef}>
-        <div className="contents-box">
-          <ItemWrapper>
-            <CheckStyled></CheckStyled>
-          </ItemWrapper>
-        </div>
+        {data &&
+          data.map((item) => (
+            <div className="contents-box" key={item.index}>
+              <ItemWrapper>
+                <CheckStyled></CheckStyled>
+                <p>{item.content}</p>
+              </ItemWrapper>
+            </div>
+          ))}
       </div>
 
       <Footer>
