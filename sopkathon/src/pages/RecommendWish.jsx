@@ -3,16 +3,18 @@ import RecommendWishTitle from '../components/RecommendWish/RecommendWishTitle';
 import RecommendWishHeader from './../components/RecommendWish/RecommendWishHeader';
 import Wishlist from './../components/RecommendWish/WishList';
 import styled from 'styled-components';
-// import { useNavigate } from 'react-router-dom';
 const baseURL = import.meta.env.VITE_DEV_BASE_URL;
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const RecommendWish = () => {
   const [data, setData] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(baseURL + `api/v1/finalWishes`, {
+        const response = await axios.get(baseURL + `/api/v1/finalWishes`, {
           headers: {
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*',
@@ -36,8 +38,26 @@ const RecommendWish = () => {
     );
   };
 
-  const handleButtonClick = () => {
+  const handleButtonClick = async () => {
     const uncheckedIds = data.map((item) => item.wishId).filter((id) => !checkedIds.includes(id));
+    try {
+      const response = await axios.delete(
+        baseURL + `/api/v1/finalWishes`,
+        {
+          wishIds: uncheckedIds,
+        },
+        {
+          headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',
+            memberId: 1,
+          },
+        },
+      );
+    } catch (error) {
+      console.error();
+    }
+    navigate('/result');
   };
 
   return (
