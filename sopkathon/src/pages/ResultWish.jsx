@@ -55,7 +55,17 @@ const ResultPage = () => {
         <TopText>다음 만남부터 함께 할 </TopText>
         <SecondText>위시리스트가 완성됐어요!</SecondText>
       </HeaderBox>
-      <div className="contents-wrapper" ref={divRef}>
+      <div
+        className="contents-wrapper"
+        ref={divRef}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.8rem',
+        }}
+      >
         {data &&
           data.map((item) => (
             <div className="contents-box" key={item.index}>
