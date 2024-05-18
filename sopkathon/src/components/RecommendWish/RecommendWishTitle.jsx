@@ -9,8 +9,9 @@ export default RecommendWishTitle;
 const StyledTitle = styled.h1`
   color: #000;
   font-family: Pretendard;
-  font-size: 18px;
+  font-size: 1.8rem;
   font-style: normal;
   font-weight: 600;
-  line-height: 130%; /* 23.4px */
+  line-height: 130%;
+  margin: 2rem;
 `;
