@@ -8,6 +8,7 @@ import styled from 'styled-components';
 const RecommendWish = () => {
   const data = {
     global_wishlist: [
+<<<<<<< HEAD
       { id: 1, title: '런닝을 한강에서 뛰기', checked: false },
       { id: 2, title: '런닝을 한강에서 뛰기', checked: false },
     ],
@@ -17,6 +18,17 @@ const RecommendWish = () => {
       { id: 3, title: '런닝을 한강에서 뛰기', checked: false },
       { id: 4, title: '런닝을 한강에서 뛰기', checked: false },
       { id: 5, title: '런닝을 한강에서 뛰기', checked: false },
+=======
+      { id: 1, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 2, title: '런닝을 한강에서 뛰기', checked: false },
+    ],
+    our_wishlist: [
+      { id: 1, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 2, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 3, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 4, title: '런닝을 한강에서 뛰기', checked: true },
+      { id: 5, title: '런닝을 한강에서 뛰기', checked: true },
+>>>>>>> develop
     ],
   };
 
