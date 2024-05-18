@@ -33,17 +33,19 @@ const RecommendWish = () => {
       <RecommendWishTitle>국룰 위시리스트</RecommendWishTitle>
       <WishlistWrapper>
         {data.map((item) => (
-          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id, 'global')} />
+          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id)} />
         ))}
       </WishlistWrapper>
       <WishlistWrapper>
         <RecommendWishTitle>우리만의 위시리스트 선택하기</RecommendWishTitle>
         {data.map((item) => (
-          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id, 'our')} />
+          <Wishlist key={item.id} data={item} onCheck={() => handleCheck(item.id)} />
         ))}
       </WishlistWrapper>
       <WideBtnWrapper>
-        <WideBtnStyled onClick={handleButtonClick}>우리 다 정했어</WideBtnStyled>
+        <WideBtnStyled onClick={handleButtonClick}>
+          선택 완료<ListLength>{checkedIds.length}</ListLength>
+        </WideBtnStyled>
       </WideBtnWrapper>
     </>
   );
@@ -58,9 +60,11 @@ const WishlistWrapper = styled.section`
 `;
 
 const WideBtnWrapper = styled.section`
-  display: flex;
+  position: absolute;
+  bottom: 1vh;
+  left: 50%;
+  transform: translate(-50%, -50%);
   justify-content: center;
-  margin-top: 2.8rem;
 `;
 
 const WideBtnStyled = styled.button`
@@ -73,7 +77,8 @@ const WideBtnStyled = styled.button`
   align-items: center;
   gap: 8px;
   border-radius: 12px;
-  background: #464646;
+  background-color: ${({ theme }) => theme.colors.blue02};
+
   color: white;
   position: sticky;
   bottom: 0;
@@ -83,4 +88,16 @@ const WideBtnStyled = styled.button`
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
+`;
+
+const ListLength = styled.span`
+  width: 2.4rem;
+  height: 2.4rem;
+  background-color: ${({ theme }) => theme.colors.white};
+  border-radius: 50%;
+  color: ${({ theme }) => theme.colors.blue02};
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

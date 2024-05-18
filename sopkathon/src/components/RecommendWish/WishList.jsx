@@ -37,6 +37,7 @@ const WishlistWrapper = styled.label`
 
   background-color: ${(props) => props.color};
   border: ${(props) => (props.isChecked ? '1px solid #091336' : 'none')};
+  color: ${(props) => (props.isChecked ? '#091336' : '#4161B7')};
   border-radius: 20px;
   cursor: pointer;
 `;
@@ -48,6 +49,7 @@ const WishlistContent = styled.p`
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+  color: inherit;
 `;
 
 const StyledIcChecked = styled(IcChecked)`
