@@ -13,4 +13,5 @@ const RecommendWishHeaderWrapper = styled.header`
   font-style: normal;
   font-weight: 700;
   line-height: 130%;
+  margin: 2rem;
 `;
