@@ -3,37 +3,38 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick-theme.css';
 import 'slick-carousel/slick/slick.css';
 import styled from 'styled-components';
+import { getQuestion } from '../../apis/getQuestion';
+import { postWish } from '../../apis/postWish';
+import { useGetRandomId } from '../../hooks/useGetRandomId';
 
 const Question = ({ setProgress }) => {
-  const cards = [
-    {
-      id: 1,
-      data: '첫 번째 카드 데이터첫 번째 카드 데이터첫 번째 카드 데이터첫 번째 카드 데이터',
-    },
-    {
-      id: 2,
-      data: '두 번째 카드 데이터두 번째 카드 데이터두 번째 카드 데이터두 번째 카드 데이터',
-    },
-    {
-      id: 3,
-      data: '세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터',
-    },
-    {
-      id: 4,
-      data: '두 번째 카드 데이터두 번째 카드 데이터두 번째 카드 데이터두 번째 카드 데이터',
-    },
-    {
-      id: 5,
-      data: '세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터세 번째 카드 데이터',
-    },
-  ];
+  const cards = {
+    data: [
+      { id: 1, question: '즉흥적인 일탈 해본 적 있나요?1' },
+      { id: 2, question: '즉흥적인 일탈 해본 적 있나요?2' },
+      { id: 3, question: '즉흥적인 일탈 해본 적 있나요?3' },
+      { id: 4, question: '즉흥적인 일탈 해본 적 있나요?4' },
+      { id: 5, question: '즉흥적인 일탈 해본 적 있나요?5' },
+    ],
+  };
+
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [question, setQuestion] = useState('');
   const sliderRef = useRef(null);
+  const { usedIds, setUsedIds, cardId } = useGetRandomId();
 
   const handleApprove = async () => {
+    if (!cardId) {
+      console.error('No more questions available');
+      return;
+    }
     try {
+      const question = getQuestion(cardId);
+      postWish(cardId, 1);
+      setQuestion(question.data);
+      setUsedIds([...usedIds, cardId]);
       const nextIndex = currentIndex + 1;
-      if (nextIndex <= cards.length) {
+      if (nextIndex <= cards.data.length) {
         sliderRef.current.slickGoTo(nextIndex);
         setProgress((prev) => prev + 1);
       }
@@ -45,7 +46,7 @@ const Question = ({ setProgress }) => {
   const handleNextCard = async () => {
     try {
       const nextIndex = currentIndex + 1;
-      if (nextIndex < cards.length) {
+      if (nextIndex < cards.data.length) {
         setCurrentIndex(nextIndex);
         sliderRef.current.slickGoTo(nextIndex);
       }
@@ -67,13 +68,15 @@ const Question = ({ setProgress }) => {
   return (
     <CardWrapper>
       <SliderWrapper ref={sliderRef} {...settings}>
-        {cards.map((card, index) => (
-          <Slide key={index} $isActive={index === currentIndex}>
-            <h3>{card.data}</h3>
-          </Slide>
-        ))}
+        {cards.data.map((card, index) => {
+          return (
+            <Slide key={index} $isActive={index === currentIndex}>
+              <img src={card.src} />
+            </Slide>
+          );
+        })}
       </SliderWrapper>
-      <QuestionTxt>즉흥적인 일탈 해본 적 있나요?</QuestionTxt>
+      <QuestionTxt>{question}</QuestionTxt>
       <ButtonWrapper>
         <SelectBtn onClick={handleApprove}>선택</SelectBtn>
         <NextBtn onClick={handleNextCard}>넘기기</NextBtn>
