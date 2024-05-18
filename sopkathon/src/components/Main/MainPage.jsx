@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import Logo from './../../assets/mainLogo.svg?react';
 import BackgroundImg from '/src/assets/home.png';
 
 const WideBtn = ({ name, handleLocation }) => {
@@ -43,12 +42,14 @@ const Wrapper = styled.div`
 const Footer = styled.div`
   display: flex;
   justify-content: center;
+  margin-top: 680px;
 `;
 
 const WideBtnStyled = styled.button`
   width: 335px;
   height: 50px;
   padding: 18px 8px;
+
   margin-top: 5px;
   justify-content: center;
   align-items: center;
